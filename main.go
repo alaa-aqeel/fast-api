@@ -14,15 +14,16 @@ func LoginHandler(ctx *fasthttp.RequestCtx) {
 		return
 	}
 	username := (GetValue(data, "username")).(string)
-	if len(username) == 0 {
+	if username == "" || username != FakeUser["username"] {
 		Response(ctx).Send(Map{
-			"username": "must be not nil",
+			"username": "invalid value",
 		})
 		return
 	}
 	tk, _ := CreateAccessToken(username)
 	Response(ctx).Send(Map{
 		"access_token": tk,
+		"username":     username,
 	})
 }
 

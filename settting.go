@@ -2,6 +2,7 @@ package main
 
 import "time"
 
+// APP
 const APP_URL = "0.0.0.0:8080"
 
 // JWT
