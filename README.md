@@ -5,5 +5,5 @@
 
 ## Run 
 ```shell
-$ go run . 
+$ sh start.sh 
 ```
