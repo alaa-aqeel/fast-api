@@ -8,8 +8,9 @@ import (
 func main() {
 	router := router.New()
 	router.GET("", func(ctx *fasthttp.RequestCtx) {
-
-		Response(ctx).Text("Hello world").Send()
+		Response(ctx).Send(Map{
+			"message": "Hello world",
+		})
 	})
 	FastHttpServer(HandlerReqeusts(router.Handler))
 }

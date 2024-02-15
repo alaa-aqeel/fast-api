@@ -6,7 +6,6 @@ import (
 
 type sResponse struct {
 	statusCode  int
-	data        []byte
 	ctx         *fasthttp.RequestCtx
 	contentType string
 }
@@ -19,24 +18,8 @@ func Response(ctx *fasthttp.RequestCtx) *sResponse {
 	}
 }
 
-func (resp *sResponse) Text(text string) *sResponse {
-	resp.data = []byte(text)
-	return resp
-}
-
-func (resp *sResponse) Json(data any) *sResponse {
-	resp.contentType = "application/json"
-	resp.data = ToJson(data)
-	return resp
-}
-
 func (resp *sResponse) StatusCode(code int) *sResponse {
 	resp.statusCode = code
-	return resp
-}
-
-func (resp *sResponse) ContentType(contentType string) *sResponse {
-	resp.contentType = contentType
 	return resp
 }
 
@@ -45,8 +28,8 @@ func (resp *sResponse) SetHeader(key string, val any) *sResponse {
 	return resp
 }
 
-func (resp *sResponse) Send() {
+func (resp *sResponse) Send(data Map) {
 	resp.ctx.Response.SetStatusCode(resp.statusCode)
-	resp.ctx.Response.Header.Set("Content-Type", resp.contentType)
-	resp.ctx.SetBody(resp.data)
+	resp.ctx.Response.Header.Set("Content-Type", "application/json")
+	resp.ctx.SetBody(ToJson(data))
 }
