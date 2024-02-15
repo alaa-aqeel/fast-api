@@ -7,7 +7,7 @@ import (
 
 func main() {
 	router := router.New()
-	router.GET("", func(ctx *fasthttp.RequestCtx) {
+	router.GET("/", func(ctx *fasthttp.RequestCtx) {
 		Response(ctx).Send(Map{
 			"message": "Hello world",
 		})
