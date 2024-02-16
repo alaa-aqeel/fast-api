@@ -1,9 +1,8 @@
 # FastAPI 
-# FastHttp 
-# FastHttp Router
+- [X] Auto reload 
+- [X] docker compose 
 
-
-## Run 
+### Run 
 ```shell
 $ sh start.sh 
 ```
